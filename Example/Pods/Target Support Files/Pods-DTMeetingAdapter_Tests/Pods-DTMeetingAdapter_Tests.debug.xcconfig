@@ -1,0 +1,11 @@
+CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack" "${PODS_CONFIGURATION_BUILD_DIR}/DTMeetingAdapter" "${PODS_ROOT}/AgoraRtcEngine_iOS" "${PODS_ROOT}/AgoraRtm_iOS" "${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AINS" "${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic" "${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtm_iOS"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjack.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/DTMeetingAdapter/DTMeetingAdapter.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -l"c++" -l"resolv" -framework "AgoraAiNoiseSuppressionExtension" -framework "AgoraDav1d" -framework "AgoraRtcKit" -framework "AgoraRtmKit" -framework "AgoraSoundTouch" -framework "Agorafdkaac" -framework "Agoraffmpeg" -framework "CocoaLumberjack" -framework "CoreTelephony" -framework "DTMeetingAdapter" -framework "SystemConfiguration"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods
+PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates
+USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES
