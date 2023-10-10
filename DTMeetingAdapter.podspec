@@ -38,8 +38,5 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency "AgoraRtm_iOS", '~>1.5.1'
-  s.dependency "AgoraRtcEngine_iOS/RtcBasic", '~>4.1.1'
-  s.dependency "AgoraRtcEngine_iOS/AINS", '~>4.1.1'
   s.dependency 'CocoaLumberjack'
 end

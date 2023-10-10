@@ -7,6 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-#if __has_include("DTAgoraMessageChannel.h")
-#import "DTAgoraMessageChannel.h"
-#endif
+//#if __has_include("DTAgoraMessageChannel.h")
+////#import <DTAgoraLiveCore/DTAgoraMessageChannel.h>
+//#endif

@@ -12,9 +12,4 @@
 #import "DTLiveStreamNetworkInfo.h"
 
 
-#if __has_include("DTAgoraLiveStream.h")
-#import "DTAgoraLiveStream.h"
-#import "DTAgoraLiveStreamConfig.h"
-#endif
-
 

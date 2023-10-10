@@ -6,7 +6,8 @@
 //
 
 #import "DTMessageChannel.h"
-#import "DTMessageChannelUtils.h"
+#import <objc/message.h>
+//#import "DTMessageChannelUtils.h"
 
 @implementation DTMessageChannel
 + (instancetype)messageChannelWithServiceType:(DTMeetingSDKServiceType)sdkServiceType {
@@ -14,17 +15,16 @@
     
     if (sdkServiceType == DTMeetingSDKServiceTypeNone) {
         messageChannel = [[DTMessageChannel alloc] init];
+    } else if (sdkServiceType == DTMeetingSDKServiceTypeDefault){
+        Class classA = NSClassFromString(@"DTAgoraMessageChannel");
+        if (classA) {
+            messageChannel = [[classA alloc] init];
+            
+        } else {
+            messageChannel = [[DTMessageChannel alloc] init];
+        }
     }
-
-    #if __has_include("DTAgoraMessageChannel.h")
-    else if (sdkServiceType == DTMeetingSDKServiceTypeDefault){
-        messageChannel = [[DTAgoraMessageChannel alloc] init];
-    }
-    #endif
-    else{
-        messageChannel = [[DTMessageChannel alloc] init];
-    }
-    
+   
     messageChannel.sdkServiceType = sdkServiceType;
     return messageChannel;
 }

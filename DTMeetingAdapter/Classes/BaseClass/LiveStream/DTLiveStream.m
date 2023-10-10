@@ -6,19 +6,12 @@
 //
 
 #import "DTLiveStream.h"
-#import "DTLiveStreamUtils.h"
+#import <objc/message.h>
 @implementation DTLiveStream
 + (NSString *)versionFromLiveStreamType:(DTMeetingSDKServiceType)type {
     if (type == DTMeetingSDKServiceTypeNone) {
         return nil;
     }
-    
-    #if __has_include("DTAgoraLiveStream.h")
-    else if (type == DTMeetingSDKServiceTypeDefault){
-        return [DTAgoraLiveStream getVersion];
-    }
-    #endif
-    
     return nil;
 }
 + (instancetype)liveStreamWithLiveStreamType:(DTMeetingSDKServiceType)liveStreamType config:(DTLiveStreamConfig *)config {
@@ -27,13 +20,21 @@
     if (liveStreamType == DTMeetingSDKServiceTypeNone) {
         liveStream = [[DTLiveStream alloc] init];
     }
+        else if (liveStreamType == DTMeetingSDKServiceTypeDefault){
+            Class classA = NSClassFromString(@"DTAgoraLiveStream");
+            SEL allocSelector = NSSelectorFromString(@"alloc");
+            SEL initSelector = NSSelectorFromString(@"initWithConfig:");
+            if (classA && allocSelector && initSelector) {
+                id instanceA = ((id (*)(Class, SEL))objc_msgSend)(classA, allocSelector);
+                liveStream = ((id (*)(id, SEL, id))objc_msgSend)(instanceA, initSelector, config);
 
-    #if __has_include("DTAgoraLiveStream.h")
-    else if (liveStreamType == DTMeetingSDKServiceTypeDefault){
-        liveStream = [[DTAgoraLiveStream alloc] initWithConfig:(DTAgoraLiveStreamConfig *)config];
-    }
-    #endif
-    
+                // 释放对象
+//                SEL releaseSelector = NSSelectorFromString(@"release");
+//                ((void (*)(id, SEL))objc_msgSend)(instanceA, releaseSelector);
+            } else {
+                liveStream = [[DTLiveStream alloc] init];
+            }
+        }
     else{
         liveStream = [[DTLiveStream alloc] init];
     }
@@ -122,6 +123,9 @@
     return NO;
 }
 
+- (BOOL)enableMicrophone:(BOOL)micro {
+    return NO;
+}
 
 - (BOOL)isEnableMicrophone{
     return NO;
@@ -144,7 +148,5 @@
 - (void)destroyResource {
     
 }
-
-
 
 @end
