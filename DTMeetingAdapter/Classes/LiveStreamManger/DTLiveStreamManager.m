@@ -23,11 +23,12 @@
     return [DTLiveStream versionFromLiveStreamType:type];
 }
 
-- (instancetype)initWithLiveStreamType:(DTMeetingSDKServiceType)type streamConfig:(DTLiveStreamConfig *)streamConfig {
+- (instancetype)initWithLiveStreamType:(DTMeetingSDKServiceType)type streamConfig:(DTLiveStreamConfig *)streamConfig delegate:(id <DTLiveStreamDelegate>) delegate {
     self = [super init];
     if (self) {
         _targetLiveStreamType = type;
         _streamConfig = streamConfig;
+        _delegate = delegate;
         [self setUpLiveStream];
     }
     return self;
@@ -51,11 +52,6 @@
         //        DDLogError(@"")
         return [DTMeetingError liveStreamErrorWithCode:DTLiveStreamErrorCodeParameterError];
     }
-    
-    //    self.channel = channel;
-    //    self.userId = userId;
-    //    self.userName = userName;
-    
     if ([self setUpLiveStream]) {
         [self.liveStream joinChannel:channel userId:userId userName:userName];
     }else{
@@ -68,8 +64,6 @@
 - (void)leaveChannel {
     
 }
-
-
 
 - (DTLiveStream *)setUpLiveStream{
     if (self.liveStream) {
@@ -89,48 +83,25 @@
         }
 
         self.liveStream = [DTLiveStream liveStreamWithLiveStreamType:self.targetLiveStreamType config:self.streamConfig];
+        self.liveStream.delegate = self.delegate;
         success = YES;
     } while(0);
     return self.liveStream;
 }
 
 + (DTLiveStreamConfig *)defaultLiveStreamConfig {
-    
-//    AgoraRtcEngineKit *agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:RTM_APPID delegate:self];
-//    [agoraKit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
-//
-//    AgoraVideoEncoderConfiguration *conf = [[AgoraVideoEncoderConfiguration alloc] initWithSize:AgoraVideoDimension640x360 frameRate:AgoraVideoFrameRateFps15 bitrate:AgoraVideoBitrateStandard orientationMode:AgoraVideoOutputOrientationModeAdaptative mirrorMode:AgoraVideoMirrorModeAuto];
-    
-//    [agoraKit setVideoEncoderConfiguration:conf];
-//    [agoraKit setAudioProfile:AgoraAudioProfileDefault];
-//    [agoraKit setAudioScenario:AgoraAudioScenarioGameStreaming];
-//    [agoraKit enableVideo];
-//    [agoraKit enableAudio];
-//    [agoraKit enableLocalVideo:NO];
-//    [agoraKit adjustPlaybackSignalVolume:300];
-//    [agoraKit adjustRecordingSignalVolume:300];
-//    //开启AI深度降噪
-//    //        [agoraKit enableDeepLearningDenoise:YES];
-//    //        [agoraKit muteLocalVideoStream:YES];
-//    //        [agoraKit muteAllRemoteVideoStreams:NO];
-//    [agoraKit setDefaultAudioRouteToSpeakerphone:YES];
-//
-//    [agoraKit setClientRole:AgoraClientRoleBroadcaster];
-//    [agoraKit enableAudioVolumeIndication:800 smooth:3 reportVad:NO];
-    
     DTLiveStreamConfig *liveStreamConfig = [DTLiveStreamConfig new];
     liveStreamConfig.encodeResolution = DTVideoResolution640x360;
     liveStreamConfig.fps = DTVideoFrameRateFps15;
     liveStreamConfig.bitRate = DTVideoFrameBitRateDefault;
     liveStreamConfig.orientationMode = DTVideoOutputOrientationModeAdaptative;
     liveStreamConfig.mirrorMode = DTVideoMirrorModeAuto;
-    
     return liveStreamConfig;
 }
 
 - (void)destroyResource {
-    self.liveStream.delegate = nil;
     [self.liveStream destroyResource];
+    self.liveStream = nil;
 }
 
 @end

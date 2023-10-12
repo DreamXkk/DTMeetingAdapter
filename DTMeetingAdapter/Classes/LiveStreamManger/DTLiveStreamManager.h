@@ -14,23 +14,23 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol DTLiveStreamManagerDelegate <NSObject>
-- (void)onJoinChannelSuccess;
-- (void)onLeaveChannelSuccess;
-- (void)onReInitStreamService;
+//- (void)onJoinChannelSuccess;
+//- (void)onLeaveChannelSuccess;
+//- (void)onReInitStreamService;
 @end
 
 
 @interface DTLiveStreamManager : NSObject
 @property (nonatomic, strong, readonly) DTLiveStream *liveStream;
-//@property (nonatomic, weak) id<DTLiveStreamManagerDelegate> delegate;
+@property (nonatomic, weak, readonly) id<DTLiveStreamDelegate> delegate;
 @property (nonatomic, assign, readonly) DTMeetingSDKServiceType targetLiveStreamType;
 @property (nonatomic, copy) NSString *serviceStatus;
 
 + (NSString *)versionFromLiveStreamType:(DTMeetingSDKServiceType)type;
-
+///Do not configure DTLiveStreamConfig for now, this is in convergence。
 + (DTLiveStreamConfig *)defaultLiveStreamConfig;
 
-- (instancetype)initWithLiveStreamType:(DTMeetingSDKServiceType)type streamConfig:(DTLiveStreamConfig *)streamConfig;
+- (instancetype)initWithLiveStreamType:(DTMeetingSDKServiceType)type streamConfig:(DTLiveStreamConfig *)streamConfig delegate:(id <DTLiveStreamDelegate>) delegate;
 
 - (void)updataStreamConfigWithDynamicTokenBeforeJoinChannel:(NSString *)dynamicToken;
 

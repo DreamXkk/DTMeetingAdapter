@@ -69,13 +69,13 @@
     return NO;
 }
 
-- (BOOL)stopPreview{
-    return false;
+- (int)stopPreview{
+    return 1;
 }
 
-- (BOOL)startPlayStream:(NSString *)streamId inView:(UIView *)view contentMode:(DTRTCViewContentMode)mode{
-    return NO;
-}
+//- (BOOL)startPlayStream:(NSString *)streamId inView:(UIView *)view contentMode:(DTRTCViewContentMode)mode{
+//    return NO;
+//}
 
 - (void)stopPlayStream:(NSString *)streamId{
 }
@@ -111,6 +111,32 @@
     return NO;
 }
 
+- (BOOL)enableMicrophone:(BOOL)micro {
+    return NO;
+}
+
+- (int)enableLocalVideo:(BOOL)enabled {
+    return 1;
+}
+
+- (int)muteLocalVideoStream:(BOOL)mute {
+    return 1;
+}
+
+- (int)muteLocalAudioStream:(BOOL)mute {
+    return 1;
+}
+
+
+- (int)startPreview {
+    return 1;
+}
+- (int)setupLocalVideo:(NSUInteger)uid renderView:(UIView *)renderView renderMode:(DTRTCViewContentMode)renderMode {
+    return 1;
+}
+- (int)setupRemoteVideo:(NSUInteger)uid renderView:(UIView *)renderView renderMode:(DTRTCViewContentMode)renderMode {
+    return 1;
+}
 - (BOOL)enableCamera:(BOOL)camera {
     return NO;
 }
@@ -119,13 +145,6 @@
     return NO;
 }
 
-- (BOOL)switchCamera {
-    return NO;
-}
-
-- (BOOL)enableMicrophone:(BOOL)micro {
-    return NO;
-}
 
 - (BOOL)isEnableMicrophone{
     return NO;
@@ -137,6 +156,10 @@
 
 - (void)renewToken:(NSString * _Nonnull)token {
     
+}
+
+- (BOOL)switchCamera {
+    return NO;
 }
 
 - (BOOL)encryptionMode:(DTEncryptionMode)encryptionMode

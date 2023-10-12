@@ -119,10 +119,10 @@ typedef NS_OPTIONS(NSInteger, DTMirrorMode) {
  - DTRTCViewContentModeScaleToFill: Fill
  */
 typedef NS_ENUM(NSInteger, DTRTCViewContentMode) {
-    DTRTCViewContentModeScaleAspectFit = 0,
-    DTRTCViewContentModeScaleAspectFill,
-    DTRTCViewContentModeScaleToFill,
+    DTRTCViewContentModeHidden = 0,
+    DTRTCViewContentModeFit,
 };
+
 
 /**
  摄像头位置

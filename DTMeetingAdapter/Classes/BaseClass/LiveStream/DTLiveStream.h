@@ -19,19 +19,22 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol DTLiveStreamDelegate <NSObject>
 @optional
 
+
+
+-(void)onJoinChannelSucess:(NSString *)channel withStreamId:(NSString *)streamId elapsed:(NSInteger)elapsed;
 /**
  用户注册成功的回调
 
- @param uid 回调的uid
+ @param streamId 回调的uid
  @param error 为nil时加入channel成功
  */
 
-- (void)onRegisteredWithStreamId:(NSString * _Nonnull)uid userAccount:(NSString * _Nonnull)userAccount withError:(DTMeetingError * _Nullable)error;
+- (void)onRegisteredWithStreamId:(NSString * _Nonnull)streamId userAccount:(NSString * _Nonnull)userAccount withError:(DTMeetingError * _Nullable)error;
 
 /// 加入channel完成
 /// @param channel 加入的channel
 /// @param error 异常
-- (void)onJoinChannel:(NSString *)channel withUid:(NSString * _Nullable)uid withError:(DTMeetingError * _Nullable)error;
+- (void)onJoinChannel:(NSString *)channel withStreamId:(NSString * _Nullable)streamId withError:(DTMeetingError * _Nullable)error;
 
 
 /// 进入频道后接收到他人加入频道的提醒
@@ -345,7 +348,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  停止预览
  */
-- (BOOL)stopPreview;
+- (int)stopPreview;
 
 /**
  开始拉流
@@ -355,7 +358,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param mode 显示模式
  @return 方法执行结果，是否拉流成功@see -onPlayStreamSuccess:channel:;
  */
-- (BOOL)startPlayStream:(NSString *)streamId inView:(UIView * _Nullable)view contentMode:(DTRTCViewContentMode)mode;
+//- (BOOL)startPlayStream:(NSString *)streamId inView:(UIView * _Nullable)view contentMode:(DTRTCViewContentMode)mode;
 
 /**
  停止拉流
@@ -424,6 +427,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)enableMicrophone:(BOOL)micro;
 
+- (int)enableLocalVideo:(BOOL)enabled;
+- (int)muteLocalVideoStream:(BOOL)mute;
+- (int)muteLocalAudioStream:(BOOL)mute;
+- (int)startPreview;
+- (int)setupLocalVideo:(NSUInteger)uid renderView:(UIView *)renderView renderMode:(DTRTCViewContentMode)renderMode;
+- (int)setupRemoteVideo:(NSUInteger)uid renderView:(UIView *)renderView renderMode:(DTRTCViewContentMode)renderMode;
 /**
  是否允许录制视频
 
