@@ -9,7 +9,6 @@
 #import "DTMeetingError+liveStreamManager.h"
 #import "DTLiveStream.h"
 #import "NSString+Utils.h"
-#import <CocoaLumberjack/CocoaLumberjack.h>
 
 @interface DTLiveStreamManager()
 @property (nonatomic, strong, readwrite) DTLiveStream *liveStream;
