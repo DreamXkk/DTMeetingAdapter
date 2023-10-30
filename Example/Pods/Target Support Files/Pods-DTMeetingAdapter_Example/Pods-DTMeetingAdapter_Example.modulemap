@@ -1,0 +1,6 @@
+framework module Pods_DTMeetingAdapter_Example {
+  umbrella header "Pods-DTMeetingAdapter_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

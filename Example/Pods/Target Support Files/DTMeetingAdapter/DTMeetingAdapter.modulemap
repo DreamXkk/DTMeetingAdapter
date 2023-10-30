@@ -1,0 +1,6 @@
+framework module DTMeetingAdapter {
+  umbrella header "DTMeetingAdapter-umbrella.h"
+
+  export *
+  module * { export * }
+}

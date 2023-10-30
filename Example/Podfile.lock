@@ -1,0 +1,35 @@
+PODS:
+  - AgoraRtcEngine_iOS/AINS (4.1.1)
+  - AgoraRtcEngine_iOS/RtcBasic (4.1.1)
+  - AgoraRtm_iOS (1.5.1)
+  - CocoaLumberjack (3.7.4):
+    - CocoaLumberjack/Core (= 3.7.4)
+  - CocoaLumberjack/Core (3.7.4)
+  - DTMeetingAdapter (0.1.0):
+    - AgoraRtcEngine_iOS/AINS (~> 4.1.1)
+    - AgoraRtcEngine_iOS/RtcBasic (~> 4.1.1)
+    - AgoraRtm_iOS (~> 1.5.1)
+    - CocoaLumberjack
+
+DEPENDENCIES:
+  - DTMeetingAdapter (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - AgoraRtcEngine_iOS
+    - AgoraRtm_iOS
+    - CocoaLumberjack
+
+EXTERNAL SOURCES:
+  DTMeetingAdapter:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AgoraRtcEngine_iOS: df216a18a01c30fba926565d889c9542319252ac
+  AgoraRtm_iOS: 595a9fa33a409831e6183396ea8f8bc563918403
+  CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
+  DTMeetingAdapter: 45e4794234460be5abd65d792fde67a7aa329d4b
+
+PODFILE CHECKSUM: 8fbb35c4cb7942fd02db58fae2572359b12e4f0f
+
+COCOAPODS: 1.13.0

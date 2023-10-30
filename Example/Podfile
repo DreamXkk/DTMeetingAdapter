@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'DTMeetingAdapter_Example' do
+  pod 'DTMeetingAdapter', :path => '../'
+
+  target 'DTMeetingAdapter_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
